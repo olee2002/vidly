@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getMovies, deleteMovie } from '../services/fakeMovieService';
+import Movie from './movie'
 
 class Movies extends Component {
 
@@ -14,48 +15,21 @@ class Movies extends Component {
         })
     }
     deleteMovie = (id) => {
-
+        const deleted = deleteMovie(id);
+        const data = this.state.movies.filter(elem => elem !== deleted)
+        console.log(data)
+        this.setState({ movies: data })
     }
 
     render() {
         const tableHead = ['Title', 'Genre', 'Stock', 'Rate', ''];
         const { length: count } = this.state.movies;
         if (count === 0) return <div className='m-5'> There are no movies available.</div>
-        return <div>
-            <h2 className="m-3">Movie Information</h2>
-            <h6>Currently {count} movies available.</h6>
-            <table className="table">
-                <thead>
-                    <tr>
-                        {tableHead.map(elem => <th scope="col">{elem}</th>)}
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {this.state.movies && this.state.movies.map(movie =>
-                        <tr>
-                            <td scope="row">{movie.title}</td>
-                            <td scope="row">{movie.genre.name}</td>
-                            <td scope="row">{movie.numberInStock}</td>
-                            <td scope="row">{movie.dailyRentalRate}</td>
-                            <td scope="row">
-                                <button
-                                    onClick={() => {
-                                        const deleted = deleteMovie(movie._id);
-                                        const data = this.state.movies.filter(elem => elem !== deleted)
-                                        console.log(data)
-                                        this.setState({ movies: data })
-                                    }
-                                    }
-                                    className="btn-danger">Delete</button></td>
-                        </tr>
-                    )}
-
-
-                </tbody>
-
-            </table>
-        </div>
+        return <Movie
+            movies={this.state.movies}
+            tableHead={tableHead}
+            deleteMovie={this.deleteMovie}
+            count={count} />
     }
 }
 
