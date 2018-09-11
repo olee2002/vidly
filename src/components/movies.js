@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getMovies } from '../services/fakeMovieService';
+import { getMovies, deleteMovie } from '../services/fakeMovieService';
 
 class Movies extends Component {
 
@@ -13,32 +13,47 @@ class Movies extends Component {
             movies: movieData
         })
     }
+    deleteMovie = (id) => {
+
+    }
 
     render() {
-        const tableHead = ['Title', 'Genre', 'Stock', 'Rate'];
+        const tableHead = ['Title', 'Genre', 'Stock', 'Rate', ''];
         console.log(this.state.movies)
-        return <table className="table">
-            <thead>
-                <tr>
-                    {tableHead.map(elem => <th scope="col">{elem}</th>)}
-                </tr>
-            </thead>
-            <tbody>
-
-                {this.state.movies.map(movie =>
+        return <div>
+            <h2 className="m-3">Movie Information</h2>
+            <table className="table">
+                <thead>
                     <tr>
-                        <td scope="row">{movie.title}</td>
-                        <td scope="row">{movie.genre.name}</td>
-                        <td scope="row">{movie.numberInStock}</td>
-                        <td scope="row">{movie.dailyRentalRate}</td>
-                        <td scope="row"><button className="btn-danger">Delete</button></td>
+                        {tableHead.map(elem => <th scope="col">{elem}</th>)}
                     </tr>
-                )}
+                </thead>
+                <tbody>
+
+                    {this.state.movies.map(movie =>
+                        <tr>
+                            <td scope="row">{movie.title}</td>
+                            <td scope="row">{movie.genre.name}</td>
+                            <td scope="row">{movie.numberInStock}</td>
+                            <td scope="row">{movie.dailyRentalRate}</td>
+                            <td scope="row">
+                                <button
+                                    onClick={() => {
+                                        const deleted = deleteMovie(movie._id);
+                                        const data = this.state.movies.filter(elem => elem !== deleted)
+                                        console.log(data)
+                                        this.setState({ movies: data })
+                                    }
+                                    }
+                                    className="btn-danger">Delete</button></td>
+                        </tr>
+                    )}
 
 
-            </tbody>
+                </tbody>
 
-        </table>;
+            </table>
+        </div>
     }
 }
 
