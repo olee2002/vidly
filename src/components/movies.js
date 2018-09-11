@@ -19,9 +19,11 @@ class Movies extends Component {
 
     render() {
         const tableHead = ['Title', 'Genre', 'Stock', 'Rate', ''];
-        console.log(this.state.movies)
+        const { length: count } = this.state.movies;
+        if (count === 0) return <div className='m-5'> There are no movies available.</div>
         return <div>
             <h2 className="m-3">Movie Information</h2>
+            <h6>Currently {count} movies available.</h6>
             <table className="table">
                 <thead>
                     <tr>
