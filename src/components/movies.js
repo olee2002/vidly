@@ -30,7 +30,7 @@ class Movies extends Component {
                 </thead>
                 <tbody>
 
-                    {this.state.movies.map(movie =>
+                    {this.state.movies && this.state.movies.map(movie =>
                         <tr>
                             <td scope="row">{movie.title}</td>
                             <td scope="row">{movie.genre.name}</td>
