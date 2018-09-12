@@ -7,7 +7,8 @@ class Movies extends Component {
 
     state = {
         movies: [],
-        perPage: 2
+        perPage: 4,
+        currentPage: 1
     };
 
     componentDidMount = () => {
@@ -30,12 +31,13 @@ class Movies extends Component {
         this.setState({ movies: movies })
     }
     handlePageChange = page => {
-        console.log(page)
+        this.setState({ currentPage: page })
     }
 
     render() {
         const tableHead = ['Title', 'Genre', 'Stock', 'Rate', 'Like', 'Delete'];
         const { length: count } = this.state.movies;
+        const { perPage, currentPage } = this.state;
         if (count === 0) return <div className='m-5'> There are no movies available.</div>;
         return <div>
             <Movie
@@ -47,7 +49,8 @@ class Movies extends Component {
             />
             <Pagination
                 count={count}
-                perPage={this.state.perPage}
+                currentPage={currentPage}
+                perPage={perPage}
                 onPageChange={this.handlePageChange}
             />
         </div>
