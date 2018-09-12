@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { getMovies, deleteMovie } from '../services/fakeMovieService';
-import Movie from './movie'
+import Movie from './movie';
+import Pagination from './pagination';
 
 class Movies extends Component {
 
     state = {
         movies: [],
+        perPage: 2
     };
 
     componentDidMount = () => {
@@ -26,20 +28,29 @@ class Movies extends Component {
         let movieObj = movies[index];
         movieObj.liked = !movie.liked
         this.setState({ movies: movies })
-        console.log(this.state.movies)
+    }
+    handlePageChange = page => {
+        console.log(page)
     }
 
     render() {
         const tableHead = ['Title', 'Genre', 'Stock', 'Rate', 'Like', 'Delete'];
         const { length: count } = this.state.movies;
         if (count === 0) return <div className='m-5'> There are no movies available.</div>;
-        return <Movie
-            movies={this.state.movies}
-            tableHead={tableHead}
-            deleteMovie={this.deleteMovie}
-            count={count}
-            handleLike={this.handleLike}
-        />;
+        return <div>
+            <Movie
+                movies={this.state.movies}
+                tableHead={tableHead}
+                deleteMovie={this.deleteMovie}
+                count={count}
+                handleLike={this.handleLike}
+            />
+            <Pagination
+                count={count}
+                perPage={this.state.perPage}
+                onPageChange={this.handlePageChange}
+            />
+        </div>
     }
 }
 
