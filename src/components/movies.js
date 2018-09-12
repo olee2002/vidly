@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getMovies, deleteMovie } from '../services/fakeMovieService';
 import Movie from './movie';
 import Pagination from './pagination';
+import { paginate } from '../utils/paginate';
 
 class Movies extends Component {
 
@@ -37,11 +38,14 @@ class Movies extends Component {
     render() {
         const tableHead = ['Title', 'Genre', 'Stock', 'Rate', 'Like', 'Delete'];
         const { length: count } = this.state.movies;
-        const { perPage, currentPage } = this.state;
+        const { perPage, currentPage, movies } = this.state;
         if (count === 0) return <div className='m-5'> There are no movies available.</div>;
+
+        const moviesPerPage = paginate(movies, currentPage, perPage)
+        console.log(moviesPerPage)
         return <div>
             <Movie
-                movies={this.state.movies}
+                movies={moviesPerPage}
                 tableHead={tableHead}
                 deleteMovie={this.deleteMovie}
                 count={count}
