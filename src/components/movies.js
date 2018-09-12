@@ -6,7 +6,6 @@ class Movies extends Component {
 
     state = {
         movies: [],
-        liked: false
     };
 
     componentDidMount = () => {
@@ -22,9 +21,12 @@ class Movies extends Component {
     }
 
     handleLike = (movie) => {
-        const index = this.state.movies.indexOf(movie);
-        console.log(movie)
-        // this.setState({ liked: !movie.liked })
+        let movies = [...this.state.movies];
+        const index = movies.indexOf(movie);
+        let movieObj = movies[index];
+        movieObj.liked = !movie.liked
+        this.setState({ movies: movies })
+        console.log(this.state.movies)
     }
 
     render() {
@@ -36,8 +38,7 @@ class Movies extends Component {
             tableHead={tableHead}
             deleteMovie={this.deleteMovie}
             count={count}
-            liked={this.state.liked}
-            handleLikeMovie={this.handleLikeMovie}
+            handleLike={this.handleLike}
         />;
     }
 }

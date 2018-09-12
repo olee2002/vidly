@@ -21,9 +21,9 @@ const Movie = (props) => <div>
                     <td scope="row">
                         <Like
                             liked={movie.liked}
-                            id={movie.id}
-                            handleLikeMovie={props.handleLike}
-                            onClick={() => { props.handleLike(movie) }}
+                            movie={movie}
+                            handleLike={props.handleLike}
+                        // onClick={props.handleLike}
                         />
                     </td>
                     <td scope="row">

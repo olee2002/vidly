@@ -7,7 +7,7 @@ class Like extends Component {
         if (!this.props.liked) likeButton += "-o"
         return (
             <i
-                onClick={this.props.handleLike}
+                onClick={() => this.props.handleLike(this.props.movie)}
                 style={{ cursor: 'pointer' }}
                 className={likeButton}
                 aria-hidden="true"></i>
