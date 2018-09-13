@@ -39,22 +39,25 @@ class Movies extends Component {
     }
 
     handleGenre = (genre) => {
+        const { movies } = this.state;
+        console.log(movies)
+        const filteredMovies = movies.filter(movie => {
+            if (genre === 'All Genre') {
+                return movie;
+            } else { return movie.genre.name === genre; }
 
-        const filteredMovies = this.state.movies.filter(movie => movie.genre.name === genre)
-        console.log(genre === 'All Genre' ? this.state.movies : filteredMovies)
-        this.setState({ movies: filteredMovies, isSelected: !this.state.isSeleted })
-        console.log(this.state.isSelected)
+        })
+        this.setState({ filteredMovies, isSelected: !this.state.isSeleted })
     }
 
     render() {
-        console.log(getGenres())
         const tableHead = ['Title', 'Genre', 'Stock', 'Rate', 'Like', 'Delete'];
-        const { length: count } = this.state.movies;
-        const { perPage, currentPage, movies } = this.state;
-        if (count === 0) return <div className='m-5'> There are no movies available.</div>;
+        const { perPage, currentPage, movies, filteredMovies, isSelected } = this.state;
+        const moviesPerPage = paginate(isSelected ? filteredMovies : movies, currentPage, perPage)
 
-        const moviesPerPage = paginate(movies, currentPage, perPage)
-        console.log(moviesPerPage)
+        const count = movies.length;
+        if (count === 0) return <div className='m-5'> There are no movies available.</div>;
+        console.log(count)
         return <div>
             <h2 className="m-3">Movie Information</h2>
             <Movie

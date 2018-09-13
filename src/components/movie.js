@@ -3,8 +3,6 @@ import Like from './like';
 import Sort from './sort';
 
 const Movie = (props) => <div className='row' >
-
-
     <div className='col-3 m-2'>
         <Sort
             handleGenre={props.handleGenre}
@@ -21,7 +19,7 @@ const Movie = (props) => <div className='row' >
             </thead>
             <tbody>
 
-                {props.movies && props.movies.map(movie =>
+                {props.movies.map(movie =>
                     <tr key={movie._id}>
                         <td scope="row">{movie.title}</td>
                         <td scope="row">{movie.genre.name}</td>
@@ -38,7 +36,7 @@ const Movie = (props) => <div className='row' >
                         <td scope="row">
                             <button
                                 onClick={() => { props.deleteMovie(movie._id) }}
-                                className="btn-danger">Delete</button></td>
+                                className="btn-danger"><i className="fa fa-trash" aria-hidden="true"></i></button></td>
                     </tr>
                 )}
 
