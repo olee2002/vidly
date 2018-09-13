@@ -10,7 +10,7 @@ class Movies extends Component {
 
     state = {
         movies: [],
-        perPage: 4,
+        perPage: 5,
         currentPage: 1,
         isSelected: false
     };
@@ -55,7 +55,7 @@ class Movies extends Component {
         const { perPage, currentPage, movies, filteredMovies, isSelected } = this.state;
         const moviesPerPage = paginate(isSelected ? filteredMovies : movies, currentPage, perPage)
 
-        const count = movies.length;
+        const count = isSelected ? filteredMovies.length : movies.length;
         if (count === 0) return <div className='m-5'> There are no movies available.</div>;
         console.log(count)
         return <div>
