@@ -3,14 +3,13 @@ import Like from './like';
 import Sort from './sort';
 
 const Movie = (props) => <div className='row' >
-    <div className='col-3'>
+    <div className='col-12 mb-50'>
         <Sort
             handleGenre={props.handleGenre}
             filteredMovies={props.filteredMovies}
         />
     </div>
     <div className='col mt-20'>
-        <h6>Currently {props.count} movies available.</h6>
         <table className="table table-hover">
             <thead>
                 <tr>

@@ -66,7 +66,8 @@ class Movies extends Component {
         if (count === 0) return <div className='m-5'> There are no movies available.</div>;
 
         return <div>
-            <h2 className="m-3">Movie Information</h2>
+            <h2>Movie Information</h2>
+            <h6>Currently {count} movies available.</h6>
             <div>
                 <Pagination
                     count={count}
