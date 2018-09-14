@@ -31,11 +31,16 @@ class Movies extends Component {
         let movies = [...this.state.movies];
         const index = movies.indexOf(movie);
         let movieObj = movies[index];
-        movieObj.liked = !movie.liked
-        this.setState({ movies: movies })
+        movieObj.liked = !movie.liked;
+        this.setState({ movies: movies });
     }
     handlePageChange = page => {
-        this.setState({ currentPage: page })
+        this.setState({ currentPage: page });
+    }
+    handlePrevious = currentPage => {
+        if (currentPage > 1) {
+            this.setState({ currentPage: currentPage - 1 });
+        }
     }
 
     handleGenre = (e) => {
@@ -53,13 +58,22 @@ class Movies extends Component {
     render() {
         const tableHead = ['Title', 'Genre', 'Stock', 'Rate', 'Like', 'Delete'];
         const { perPage, currentPage, movies, filteredMovies, isSelected } = this.state;
-        console.log('test movies', filteredMovies)
         const moviesPerPage = paginate(isSelected ? filteredMovies : movies, currentPage, perPage)
         const count = isSelected ? filteredMovies.length : movies.length;
         if (count === 0) return <div className='m-5'> There are no movies available.</div>;
 
         return <div>
             <h2 className="m-3">Movie Information</h2>
+            <div className="justify-content-center">
+                <Pagination
+                    count={count}
+                    currentPage={currentPage}
+                    perPage={perPage}
+                    onPageChange={this.handlePageChange}
+                    handlePrevious={this.handlePrevious}
+                />
+            </div>
+
             <Movie
                 movies={moviesPerPage}
                 tableHead={tableHead}
@@ -69,12 +83,7 @@ class Movies extends Component {
                 handleLike={this.handleLike}
                 filteredMovies={filteredMovies}
             />
-            <Pagination
-                count={count}
-                currentPage={currentPage}
-                perPage={perPage}
-                onPageChange={this.handlePageChange}
-            />
+
         </div>
     }
 }
