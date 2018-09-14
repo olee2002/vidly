@@ -3,10 +3,10 @@ import Like from './like';
 import Sort from './sort';
 
 const Movie = (props) => <div className='row' >
-    <div className='col-3 m-2'>
+    <div className='col-3'>
         <Sort
             handleGenre={props.handleGenre}
-            isSeleted={props.isSeleted}
+            filteredMovies={props.filteredMovies}
         />
     </div>
     <div className='col'>
@@ -14,7 +14,7 @@ const Movie = (props) => <div className='row' >
         <table className="table">
             <thead>
                 <tr>
-                    {props.tableHead.map(elem => <th scope="col">{elem}</th>)}
+                    {props.tableHead.map(elem => <th key={elem} scope="col">{elem}</th>)}
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +30,6 @@ const Movie = (props) => <div className='row' >
                                 liked={movie.liked}
                                 movie={movie}
                                 handleLike={props.handleLike}
-                            // onClick={props.handleLike}
                             />
                         </td>
                         <td scope="row">

@@ -1,17 +1,20 @@
 import React from 'react';
 
 const Sort = (props) => {
-    const { handleGenre, isSelected } = props;
+    const { handleGenre, filteredMovies } = props;
+    console.log('test', filteredMovies)
 
     const genre = ['All Genre', 'Action', 'Comedy', 'Thriller'];
-    return <ul className="list-group" style={{ cursor: 'pointer' }}>
+    return <select
+        class="custom-select"
+        onChange={handleGenre}
+        id="inputGroupSelect02">
         {genre.map(g =>
-            <li
-                onClick={() => handleGenre(g)}
-                className={isSelected ? "list-group-item Active" : "list-group-item"}> {g}
-            </li>
+            <option
+                value={g}
+                className={"list-group-item"}>{g}</option>
         )}
-    </ul >
+    </select>
 }
 
 export default Sort;
