@@ -9,9 +9,9 @@ const Movie = (props) => <div className='row' >
             filteredMovies={props.filteredMovies}
         />
     </div>
-    <div className='col'>
+    <div className='col mt-20'>
         <h6>Currently {props.count} movies available.</h6>
-        <table className="table">
+        <table className="table table-hover">
             <thead>
                 <tr>
                     {props.tableHead.map(elem => <th key={elem} scope="col">{elem}</th>)}

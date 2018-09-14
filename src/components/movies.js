@@ -67,7 +67,7 @@ class Movies extends Component {
 
         return <div>
             <h2 className="m-3">Movie Information</h2>
-            <div className="justify-content-center">
+            <div>
                 <Pagination
                     count={count}
                     currentPage={currentPage}
@@ -77,7 +77,6 @@ class Movies extends Component {
                     handleNext={this.handleNext}
                 />
             </div>
-
             <Movie
                 movies={moviesPerPage}
                 tableHead={tableHead}
