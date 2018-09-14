@@ -42,6 +42,9 @@ class Movies extends Component {
             this.setState({ currentPage: currentPage - 1 });
         }
     }
+    handleNext = (currentPage, pageCount) => {
+        this.setState({ currentPage: (pageCount === currentPage) ? currentPage : currentPage + 1 });
+    }
 
     handleGenre = (e) => {
         const { movies } = this.state;
@@ -71,6 +74,7 @@ class Movies extends Component {
                     perPage={perPage}
                     onPageChange={this.handlePageChange}
                     handlePrevious={this.handlePrevious}
+                    handleNext={this.handleNext}
                 />
             </div>
 

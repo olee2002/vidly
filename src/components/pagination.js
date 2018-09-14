@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 const Pagination = (props) => {
-    const { count, perPage, currentPage, onPageChange, handlePrevious } = props;
+    const { count, perPage, currentPage, onPageChange, handlePrevious, handleNext } = props;
     const pageCount = Math.ceil(count / perPage);
     // if (pageCount <= 1) return null;
     const pages = _.range(1, pageCount + 1);
@@ -15,7 +15,9 @@ const Pagination = (props) => {
                 <a className="page-link"
                     onClick={() => onPageChange(page)}>{page}</a>
             </li>)}
-            <li className="page-item"><a className="page-link">Next</a></li>
+            <li className="page-item"
+                onClick={() => handleNext(currentPage, pageCount)}
+            ><a className="page-link">Next</a></li>
         </ul>
     </nav >
 }
