@@ -7,9 +7,11 @@ const Sort = (props) => {
         class="custom-select"
         onChange={handleGenre}
         id="inputGroupSelect02">
-        {genre.map(g => <option
-            value={g}
-            className={"list-group-item"}>{g}</option>
+        {genre.map(g =>
+            <option
+                value={g}
+                className={"list-group-item"}>{g}
+            </option>
         )}
     </select>
 }
