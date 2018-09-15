@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import range from 'lodash/range';
 
 const Pagination = (props) => {
     const { count, perPage, currentPage, onPageChange, handlePrevious, handleNext } = props;
     const pageCount = Math.ceil(count / perPage);
-    const pages = _.range(1, pageCount + 1);
+    const pages = range(1, pageCount + 1);
     return <nav>
         <ul className="pagination">
             <li
