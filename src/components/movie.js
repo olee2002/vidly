@@ -34,13 +34,14 @@ const Movie = (props) => <div className='row' >
                         <td scope="row">
                             <button
                                 onClick={() => { props.deleteMovie(movie._id) }}
-                                className="btn-danger"><i className="fa fa-trash" aria-hidden="true"></i></button></td>
+                                className="btn-danger">
+                                <i className="fa fa-trash" aria-hidden="true">
+                                </i>
+                            </button>
+                        </td>
                     </tr>
                 )}
-
-
             </tbody>
-
         </table>
     </div>
 </div>

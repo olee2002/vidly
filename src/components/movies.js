@@ -23,8 +23,8 @@ class Movies extends Component {
     }
     deleteMovie = (id) => {
         const deleted = deleteMovie(id);
-        const data = this.state.movies.filter(elem => elem !== deleted)
-        this.setState({ movies: data })
+        const data = this.state.movies.filter(elem => elem !== deleted);
+        this.setState({ movies: data });
     }
 
     handleLike = (movie) => {
@@ -59,6 +59,7 @@ class Movies extends Component {
     }
 
     render() {
+
         const tableHead = ['Title', 'Genre', 'Stock', 'Rate', 'Like', 'Delete'];
         const { perPage, currentPage, movies, filteredMovies, isSelected } = this.state;
         const moviesPerPage = paginate(isSelected ? filteredMovies : movies, currentPage, perPage)
@@ -87,7 +88,6 @@ class Movies extends Component {
                 handleLike={this.handleLike}
                 filteredMovies={filteredMovies}
             />
-
         </div>
     }
 }
